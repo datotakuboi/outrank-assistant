@@ -6,9 +6,8 @@ from streamlit_option_menu import option_menu
 import smtplib
 from email.mime.text import MIMEText
 
-# Load environment variables from .env
-load_dotenv()
-GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
+GEMINI_API_KEY = st.secrets["GEMINI_API_KEY"]
+
 
 # Configure Gemini with error handling
 try:
