@@ -98,7 +98,7 @@ if selected == "Email Agent":
     st.header("📧 Email Agent")
     st.write("Enter a simple phrase, and I’ll turn it into a professional email!")
 
-    user_input = st.chat_input("What do you want to say?", "e.g., email Henry I’m going on vacation")
+    user_input = st.text_input("What do you want to say?", "e.g., email Henry I’m going on vacation")
 
     if "generated_email" not in st.session_state:
         st.session_state.generated_email = ""
