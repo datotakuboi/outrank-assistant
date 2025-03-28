@@ -98,7 +98,7 @@ if selected == "Email Agent":
     st.header("📧 Email Agent")
     st.write("Enter a simple phrase, and I’ll turn it into a professional email!")
 
-    user_input = st.chat_input("What do you want to say?", "e.g., email Henry I’m going on vacation")
+    user_prompt = st.chat_input("What do you want to say?", "e.g., email Henry I’m going on vacation")
 
     if "generated_email" not in st.session_state:
         st.session_state.generated_email = ""
@@ -108,20 +108,20 @@ if selected == "Email Agent":
             st.warning("Please confirm your App Password in the sidebar before generating emails.")
             st.stop()
 
-        if user_input and recipient_email and sender_email and sender_password:
+        if user_prompt and recipient_email and sender_email and sender_password:
             with st.spinner("Generating email..."):
                 # Extract sender first name
                 sender_username = sender_email.split("@")[0]
                 sender_first_name = sender_username.split(".")[0].split("0")[0].capitalize()
 
                 # Extract recipient and message
-                words = user_input.strip().lower().split()
+                words = user_prompt.strip().lower().split()
                 if words[0] == "email" and len(words) > 2:
                     recipient_name = words[1].capitalize()
                     message_body = " ".join(words[2:])
                 else:
                     recipient_name = "There"
-                    message_body = user_input
+                    message_body = user_prompt
 
                 # Gemini prompt
                 prompt = f"""
